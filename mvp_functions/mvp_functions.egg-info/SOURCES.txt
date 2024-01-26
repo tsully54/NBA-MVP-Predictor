@@ -1,0 +1,7 @@
+setup.py
+mvp_functions/__init__.py
+mvp_functions/functions.py
+mvp_functions.egg-info/PKG-INFO
+mvp_functions.egg-info/SOURCES.txt
+mvp_functions.egg-info/dependency_links.txt
+mvp_functions.egg-info/top_level.txt
