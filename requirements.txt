@@ -10,3 +10,4 @@ unidecode
 joblib
 tensorflow
 keras
+lxml==4.6.2
