@@ -1,12 +1,19 @@
 # NBA-MVP-Predictor
-HTMLs of JupyterNotebooks. Project involved web scraping award voting and statistics of MVP candidates for every year starting from 1980. Different regression models were then tested and evaluated on different sets of training data. The best model was chosen to predict the MVP for the current season
 
+##### This project involved creating and analyzing a dataset of MVP voting in the NBA over the last 40+ years. The NBA MVP Award is decided by a panel of media members that cover the league. Every voter ranks their top 5 candidates and players are awarded a 'Share' percentage based on the votes. The player with the highest percentage wins MVP. A Detailed explanation of the scoring system can be found at [here](https://en.wikipedia.org/wiki/NBA_Most_Valuable_Player_Award#:~:text=Each%20first%2Dplace%20vote%20is,point%20total%20wins%20the%20award). Scoring for the 2023 Award can be seen [here](https://www.basketball-reference.com/awards/awards_2023.html)
+**The goal of this project is to build a regression model that can predict the voting 'Share' for each MVP candidate today**
 
-## 2023 MVP Predictions.html
-This notebook scrapes statistics for MVP candidates of current season and predicts MVP Share using previous years data.
+## Project Steps
+1. Scrape historical MVP voting and player statistics from basketball-reference.com. This also included pre-processing and feature engineering of variables.
+   - can be found in scrape_mvp_data.ipynb notebook
+2. Analyze data to find which statistics were most relevant predictors and create a baseline model
+   - can be found in EDA.ipybnb and Lin_reg.ipynb
+3. Experiment training different Regression models to find best predictor. In addition to Linear Regression, Random Forest, XGBoost and a custom Neural Network were all considered:
+   - 40 years of data was used in the study and each year was held out as test set once during training. Models were evaluated based on whether they predicted the correct winner (prediction with the highest 'Share' matched the actual winner) in the test set for each of the 40 years.
+   - can be found in appropriate notebooks
+4. Scrape live betting odds and statistics for MVP candidates of current NBA season
+   - can be found in scrape_current_cands.ipynb
+5. Use best performing models to predict 'Share' for each candidate, publish results on streamlit
+   - app.py and mvp_functions folder were used for this
 
-## Random Forest Model.html, Lin Reg Model.html, XGBoost Regressor.html
-These files contain the training and testing of different regression models. For each model, a total of 43 train/test predictions were run. For each of the 43 iterations, one season was left out to be the test set. So far, Random Forest Regression has offered the most accurate predictions and highest R2.
-
-## Scraping of Advanced Stats.html, Merge Stats and EDA.html
-These two files contain data preparation and EDA
+Live odds and predictions can be seen on
