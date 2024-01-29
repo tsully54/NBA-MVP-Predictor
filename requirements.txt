@@ -9,10 +9,10 @@ unidecode
 joblib
 tensorflow
 keras
-basketball-reference-web-scraper==4.12.1
-certifi>=2018.10.15,<2023.7.22
-idna>=2.7,<3.4
-lxml>=4.5.1,<4.6.2
-pytz>=2018.6,<2023.3
-requests>=2.20.0,<2.28.2
-urllib3>=1.24.3,<1.26.15
+basketball-reference-web-scraper
+certifi
+idna
+lxml
+pytz
+requests
+urllib3
