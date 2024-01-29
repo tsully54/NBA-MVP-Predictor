@@ -6,7 +6,7 @@ keras==3.0.4
 numpy==1.26.3
 pandas==2.2.0
 Pillow==10.2.0
-Requests==2.31.0
+Requests
 setuptools==69.0.2
 streamlit==1.30.0
 tensorflow==2.15.0.post1
