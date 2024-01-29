@@ -1,7 +1,6 @@
 streamlit
 pandas
 numpy
-matplotlib
 altair
 Pillow
 beautifulsoup4
@@ -15,4 +14,4 @@ idna==2.7
 pytz==2018.6
 requests==2.20.0
 urllib3==1.24.3
-lxml
+lxml==4.6.5
