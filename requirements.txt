@@ -1,17 +1,18 @@
-streamlit
-pandas
-numpy
-altair
-Pillow
-beautifulsoup4
-unidecode
-joblib
-tensorflow
-keras
-basketball-reference-web-scraper
-certifi==2018.10.15
-idna==2.7
-pytz==2018.6
-requests==2.20.0
-urllib3==1.24.3
-lxml==4.6.5
+streamlit==1.25.0
+pandas==1.4.2
+numpy==1.22.4
+altair==5.0.1
+Pillow==9.0.1
+beautifulsoup4 @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_croot-cdiouih5/beautifulsoup4_1650462164803/work
+Unidecode @ file:///tmp/build/80754af9/unidecode_1614712377438/work
+joblib @ file:///tmp/build/80754af9/joblib_1635411271373/work
+tensorflow==2.12.0
+keras==2.12.0
+basketball-reference-web-scraper==4.12.1
+certifi==2023.7.22
+idna==3.4
+pytz==2023.3
+requests==2.28.2
+urllib3==1.26.15
+lxml==4.5.1
+
