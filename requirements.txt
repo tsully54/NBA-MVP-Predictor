@@ -8,7 +8,7 @@ Unidecode
 joblib 
 tensorflow==2.12.0
 keras==2.12.0
-basketball-reference-web-scraper==4.12.1
+basketball-reference-web-scraper==4.13.0
 certifi==2023.7.22
 idna==3.4
 pytz==2023.3
