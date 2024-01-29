@@ -14,5 +14,4 @@ idna
 pytz
 requests
 urllib3
-lxml
 
