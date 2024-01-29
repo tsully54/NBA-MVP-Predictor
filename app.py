@@ -3,7 +3,6 @@ import pandas as pd
 import random 
 import streamlit as st
 import altair as alt
-import matplotlib.pyplot as plt
 from PIL import Image
 from collections import Counter
 import requests
