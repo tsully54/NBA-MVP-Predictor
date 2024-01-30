@@ -21,15 +21,17 @@ import sys
 print(sys.version)
 # link with odds
 url_odds = "https://sportsbook.draftkings.com/event/nba-awards-2023-24/6fe78ab7-324d-4d1a-7f10-08db724c2a58"
-
-# use custom functions to load current odds and statistics for candidates
 odds, cands = mvp.scrape_odds(url_odds)
+
 url_basic = "https://www.basketball-reference.com/leagues/NBA_2024_per_game.html"
 df_basic = mvp.scrape_basic(url_basic, cands)
+
 url_adv = "https://www.basketball-reference.com/leagues/NBA_2024_advanced.html"
 adv = mvp.scrape_adv(url_adv, cands)
+
 url_standings = "https://www.basketball-reference.com/leagues/NBA_2024_standings.html"
 standings = mvp.scrape_standings(url_standings)
+
 df = mvp.merge_dfs(df_basic, adv, standings)
 
 #choose appropriate variables
