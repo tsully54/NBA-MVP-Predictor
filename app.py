@@ -7,7 +7,6 @@ from PIL import Image
 from collections import Counter
 import requests
 from bs4 import BeautifulSoup
-from basketball_reference_web_scraper import client
 from unidecode import unidecode
 import os
 import joblib
