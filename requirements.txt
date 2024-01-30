@@ -1,6 +1,7 @@
 altair
 beautifulsoup4
 joblib
+sklearn
 tensorflow
 keras
 numpy

@@ -10,15 +10,15 @@ from bs4 import BeautifulSoup
 from unidecode import unidecode
 import os
 import joblib
+import sklearn
 import tensorflow as tf
 from tensorflow import keras
 from keras.models import load_model
 import pickle
 import warnings
 warnings.filterwarnings('ignore')
-print("Before import")
 import mvp_functions as mvp
-print("After import")
+
 
 
 
