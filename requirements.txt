@@ -1,12 +1,12 @@
 altair
 beautifulsoup4
 joblib
+tensorflow
 keras
 numpy
 pandas
 Pillow
 Requests
 setuptools
-streamlit
-tensorflow
+streamlit==1.25.0
 Unidecode
