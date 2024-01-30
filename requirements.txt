@@ -1,7 +1,7 @@
 altair
 beautifulsoup4
 joblib
-scikit-learn
+scikit-learn==1.0.2
 tensorflow
 keras
 numpy
