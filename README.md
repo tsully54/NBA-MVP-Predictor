@@ -16,4 +16,4 @@
 5. Use best performing models to predict 'Share' for each candidate, publish results on streamlit
    - app.py and mvp_functions folder were used for this
 
-Live odds and predictions can be seen on
+Live odds and predictions were published on this [site](https://nba-mvp-predictor-5bblsks5tvgsu9x4ymzjtp.streamlit.app/) using Streamlit.
