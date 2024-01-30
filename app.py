@@ -16,9 +16,12 @@ from keras.models import load_model
 import pickle
 import warnings
 warnings.filterwarnings('ignore')
+print("Before import")
 import mvp_functions as mvp
-import sys
-print(sys.version)
+print("After import")
+
+
+
 # link with odds
 url_odds = "https://sportsbook.draftkings.com/event/nba-awards-2023-24/6fe78ab7-324d-4d1a-7f10-08db724c2a58"
 odds, cands = mvp.scrape_odds(url_odds)
