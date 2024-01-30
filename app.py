@@ -18,25 +18,28 @@ import pickle
 import warnings
 warnings.filterwarnings('ignore')
 import mvp_functions as mvp
-
+import sys
+print(sys.version)
 # link with odds
-url = "https://sportsbook.draftkings.com/event/nba-awards-2023-24/6fe78ab7-324d-4d1a-7f10-08db724c2a58"
-test = requests.get(url)
+url_odds = "https://sportsbook.draftkings.com/event/nba-awards-2023-24/6fe78ab7-324d-4d1a-7f10-08db724c2a58"
 
 # use custom functions to load current odds and statistics for candidates
-odds, cands = mvp.scrape_odds(url)
-basic_stats = mvp.scrape_basic(2024, cands)
-adv_stats = mvp.scrape_adv(2024, cands)
-standings = mvp.scrape_standings(2024)
-df = mvp.merge_dfs(basic_stats, adv_stats, standings)
+odds, cands = mvp.scrape_odds(url_odds)
+url_basic = "https://www.basketball-reference.com/leagues/NBA_2024_per_game.html"
+df_basic = mvp.scrape_basic(url_basic, cands)
+url_adv = "https://www.basketball-reference.com/leagues/NBA_2024_advanced.html"
+adv = mvp.scrape_adv(url_adv, cands)
+url_standings = "https://www.basketball-reference.com/leagues/NBA_2024_standings.html"
+standings = mvp.scrape_standings(url_standings)
+df = mvp.merge_dfs(df_basic, adv, standings)
 
 #choose appropriate variables
 X_cols = ['PRA',
  'WS/48',
- 'player_efficiency_rating',
- 'offensive_box_plus_minus',
- 'value_over_replacement_player',
- 'wl_pct',
+ 'PER',
+ 'OBPM',
+ 'VORP',
+ 'W/L%',
  'seed']
 
 X = df[X_cols]
@@ -59,11 +62,11 @@ rf_preds = rf.predict(X)
 
 # Load results into dataframe
 res = pd.DataFrame()
-res['name'] = df['name']
+res['Player'] = df['Player']
 res['NN_pred'] = nn_preds
 res['RF_pred'] = rf_preds
 res1 = res.sort_values(by='NN_pred', ascending=False)
-results= pd.merge(res1, odds, on='name', how='inner')
+results= pd.merge(res1, odds, on='Player', how='inner')
 
 st.title("NBA MVP Prediction")
 st.write("by Tommy Sullivan")
