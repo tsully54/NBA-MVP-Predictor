@@ -2,9 +2,9 @@ altair
 beautifulsoup4
 joblib
 scikit-learn==1.0.2
-tensorflow==2.16.1
+tensorflow
 keras
-numpy==1.21.0
+numpy
 pandas
 Pillow
 Requests
