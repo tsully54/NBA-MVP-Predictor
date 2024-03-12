@@ -19,7 +19,7 @@ import warnings
 warnings.filterwarnings('ignore')
 import mvp_functions as mvp
 
-
+mse = tf.keras.losses.MeanSquaredError()
 
 
 # link with odds
