@@ -11,3 +11,4 @@ Requests
 setuptools
 streamlit==1.25.0
 Unidecode
+inotify
