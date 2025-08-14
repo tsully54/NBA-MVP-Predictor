@@ -21,56 +21,61 @@ import mvp_functions as mvp
 
 mse = tf.keras.losses.MeanSquaredError()
 
+# status = 1 # when current season is live
+status = 0 # when no current season
 
-# link with odds
-url_odds = "https://sportsbook.draftkings.com/leagues/basketball/nba?category=awards&subcategory=mvp"
-odds, cands = mvp.scrape_odds(url_odds)
-
-url_basic = "https://www.basketball-reference.com/leagues/NBA_2026_per_game.html"
-df_basic = mvp.scrape_basic(url_basic, cands)
-
-url_adv = "https://www.basketball-reference.com/leagues/NBA_2026_advanced.html"
-adv = mvp.scrape_adv(url_adv, cands)
-
-url_standings = "https://www.basketball-reference.com/leagues/NBA_2026_standings.html"
-standings = mvp.scrape_standings(url_standings)
-
-df = mvp.merge_dfs(df_basic, adv, standings)
-
-#choose appropriate variables
-X_cols = ['PRA',
- 'WS/48',
- 'PER',
- 'OBPM',
- 'VORP',
- 'W/L%',
- 'seed']
-
-X = df[X_cols]
-
-# predict with neural network model
-load_folder = 'NN_models'
-num_models = 5
-loaded_models = []
-
-for i in range(num_models):
-    # Load the model from the 'NN_models' folder
-    model = load_model(os.path.join(load_folder, f'model_{i + 1}.h5'))
-    loaded_models.append(model)
-nn_preds = np.mean([model.predict(X) for model in loaded_models], axis=0)
-
-
-# predict with RandomForest model
-rf = joblib.load("./rf_best.joblib")
-rf_preds = rf.predict(X)
-
-# Load results into dataframe
-res = pd.DataFrame()
-res['Player'] = df['Player']
-res['NN_pred'] = nn_preds
-res['RF_pred'] = rf_preds
-res1 = res.sort_values(by='NN_pred', ascending=False)
-results= pd.merge(res1, odds, on='Player', how='inner')
+if status == 0:
+    # link with odds
+    url_odds = "https://sportsbook.draftkings.com/leagues/basketball/nba?category=awards&subcategory=mvp"
+    odds, cands = mvp.scrape_odds(url_odds)
+    
+    url_basic = "https://www.basketball-reference.com/leagues/NBA_2026_per_game.html"
+    df_basic = mvp.scrape_basic(url_basic, cands)
+    
+    url_adv = "https://www.basketball-reference.com/leagues/NBA_2026_advanced.html"
+    adv = mvp.scrape_adv(url_adv, cands)
+    
+    url_standings = "https://www.basketball-reference.com/leagues/NBA_2026_standings.html"
+    standings = mvp.scrape_standings(url_standings)
+    
+    df = mvp.merge_dfs(df_basic, adv, standings)
+    
+    #choose appropriate variables
+    X_cols = ['PRA',
+     'WS/48',
+     'PER',
+     'OBPM',
+     'VORP',
+     'W/L%',
+     'seed']
+    
+    X = df[X_cols]
+    
+    # predict with neural network model
+    load_folder = 'NN_models'
+    num_models = 5
+    loaded_models = []
+    
+    for i in range(num_models):
+        # Load the model from the 'NN_models' folder
+        model = load_model(os.path.join(load_folder, f'model_{i + 1}.h5'))
+        loaded_models.append(model)
+    nn_preds = np.mean([model.predict(X) for model in loaded_models], axis=0)
+    
+    
+    # predict with RandomForest model
+    rf = joblib.load("./rf_best.joblib")
+    rf_preds = rf.predict(X)
+    
+    # Load results into dataframe
+    res = pd.DataFrame()
+    res['Player'] = df['Player']
+    res['NN_pred'] = nn_preds
+    res['RF_pred'] = rf_preds
+    res1 = res.sort_values(by='NN_pred', ascending=False)
+    results= pd.merge(res1, odds, on='Player', how='inner')
+else:
+    continue
 
 st.title("NBA MVP Prediction")
 st.write("by Tommy Sullivan")
@@ -91,10 +96,13 @@ st.caption("Multiple regression models were experimented with including Linear R
 st.subheader("Model training and evaluation")
 st.caption("A total of 40 years of MVP voting was used. Each year was used as a test set once for each type of regression model. Models were evaluated based on how well they predicted the 'Share' for each player in the test set. The main evaluation was whether the player with the highest predicted 'Share' matched the MVP winner for that year. R-squared and MSE were also calculated ")
 
-st.header("2024 Prediction")
-st.caption("Neural Network and Random Forests were the best regression models with Random Forest correctly picking the winner on 31/40 (78%) of years. Training results and model architectures can be seen below the predictions")
-st.dataframe(results)
-
+st.header("2026 Prediction")
+if status == 0:
+    st.caption("Neural Network and Random Forests were the best regression models with Random Forest correctly picking the winner on 31/40 (78%) of years. Training results and model architectures can be seen below the predictions")
+    st.dataframe(results)
+else:
+    st.caption("Need to wait for 2026 season to start for model to make new predictions")
+ 
 # Train/test results
 st.subheader("Train/test results")
 st.caption("The results of each year as a test set can be seen below. When you select a given year, you will see the predictions of a model that had that year removed from training")
