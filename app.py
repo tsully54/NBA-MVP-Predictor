@@ -74,8 +74,6 @@ if status == 1:
     res['RF_pred'] = rf_preds
     res1 = res.sort_values(by='NN_pred', ascending=False)
     results= pd.merge(res1, odds, on='Player', how='inner')
-else:
-    continue
 
 st.title("NBA MVP Prediction")
 st.write("by Tommy Sullivan")
