@@ -100,6 +100,7 @@ if status == 1:
     st.dataframe(results)
 else:
     st.caption("Need to wait for 2026 season to start for model to make new predictions")
+    rf = joblib.load("./rf_best.joblib")
  
 # Train/test results
 st.subheader("Train/test results")
