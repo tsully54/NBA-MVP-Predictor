@@ -24,7 +24,7 @@ mse = tf.keras.losses.MeanSquaredError()
 # status = 1 # when current season is live
 status = 0 # when no current season
 
-if status == 0:
+if status == 1:
     # link with odds
     url_odds = "https://sportsbook.draftkings.com/leagues/basketball/nba?category=awards&subcategory=mvp"
     odds, cands = mvp.scrape_odds(url_odds)
@@ -97,7 +97,7 @@ st.subheader("Model training and evaluation")
 st.caption("A total of 40 years of MVP voting was used. Each year was used as a test set once for each type of regression model. Models were evaluated based on how well they predicted the 'Share' for each player in the test set. The main evaluation was whether the player with the highest predicted 'Share' matched the MVP winner for that year. R-squared and MSE were also calculated ")
 
 st.header("2026 Prediction")
-if status == 0:
+if status == 1:
     st.caption("Neural Network and Random Forests were the best regression models with Random Forest correctly picking the winner on 31/40 (78%) of years. Training results and model architectures can be seen below the predictions")
     st.dataframe(results)
 else:
